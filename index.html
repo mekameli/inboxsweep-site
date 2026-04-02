@@ -732,6 +732,29 @@
     @media (min-width: 601px) {
       .mobile-nav { display: none !important; }
     }
+  
+    .feature-icon-wrap {
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,232,143,0.1));
+      border: 1px solid rgba(0,212,255,0.15);
+      color: #00d4ff;
+      margin-bottom: 16px;
+    }
+    .proof-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00d4ff, #00e88f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .proof-divider {
+      width: 1px;
+      height: 40px;
+      background: var(--border);
+    }
   </style>
 </head>
 <body>
@@ -795,12 +818,26 @@
     <div class="proof-bar" role="complementary" aria-label="Key stats">
       <div class="proof-inner">
         <div class="proof-item">
-          <span class="proof-icon" aria-hidden="true">⚡</span>
-          <div>
-            <div class="proof-text">10,000+ emails classified in minutes</div>
-            <div class="proof-sub">On-device AI, no waiting</div>
-          </div>
+          <div class="proof-number">10,000+</div>
+          <div class="proof-text">Emails cleaned in minutes</div>
         </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <div class="proof-number">100%</div>
+          <div class="proof-text">On-device processing</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <div class="proof-number">0 bytes</div>
+          <div class="proof-text">Sent to any server</div>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <div class="proof-number">0 emails</div>
+          <div class="proof-text">Permanently deleted</div>
+        </div>
+      </div>
+    </div>
         <div class="proof-item">
           <span class="proof-icon" aria-hidden="true">🔒</span>
           <div>
@@ -821,45 +858,45 @@
     <!-- FEATURES -->
     <section id="features" aria-labelledby="features-heading">
       <div class="section-inner">
-        <span class="section-label reveal">Features</span>
-        <h2 id="features-heading" class="reveal">Everything you need to<br/>conquer your inbox.</h2>
-        <p class="section-sub reveal">Six powerful tools that work together — all running locally on your Mac, all respecting your privacy.</p>
+        <span class="section-label reveal">How InboxSweep helps</span>
+        <h2 id="features-heading" class="reveal">Your inbox is overwhelming.<br/>It doesn't have to be.</h2>
+        <p class="section-sub reveal">InboxSweep uses on-device AI to identify what matters, what's junk, and what's been sitting there for years — then makes it effortless to clean up, without losing a single email.</p>
         <div class="features-grid">
 
-          <article class="feature-card reveal" aria-label="Smart Categories feature">
-            <span class="feature-icon" aria-hidden="true">🗂️</span>
-            <h3 class="feature-title">Smart Categories</h3>
-            <p class="feature-desc">On-device AI sorts your inbox into meaningful categories — newsletters, receipts, notifications, and more — automatically.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+            <h3 class="feature-title">AI identifies the clutter</h3>
+            <p class="feature-desc">On-device AI classifies every email into 10 smart categories — marketing, social, newsletters, finance, work, personal, and more. No manual sorting. No rules to write. It just works.</p>
           </article>
 
-          <article class="feature-card reveal" aria-label="Semantic Search feature">
-            <span class="feature-icon" aria-hidden="true">🔍</span>
-            <h3 class="feature-title">Semantic Search</h3>
-            <p class="feature-desc">Find any email by meaning, not just keywords. Ask naturally and get the right result, even from archived mail.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/><path d="M19 6l-7 6-7-6"/></svg></div>
+            <h3 class="feature-title">Clean up in bulk, by category or sender</h3>
+            <p class="feature-desc">See 300 marketing emails from the last 3 years? Select all, archive in one click. Group by sender to find who's flooding your inbox. Clean thousands of emails in minutes, not hours.</p>
           </article>
 
-          <article class="feature-card reveal" aria-label="Needs Attention feature">
-            <span class="feature-icon" aria-hidden="true">📌</span>
-            <h3 class="feature-title">Needs Attention</h3>
-            <p class="feature-desc">AI surfaces emails that actually require your action — so the important stuff never drowns in the noise.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3"/><path d="M21 16v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3"/><line x1="12" y1="3" x2="12" y2="21"/></svg></div>
+            <h3 class="feature-title">Every email archived locally — nothing is ever lost</h3>
+            <p class="feature-desc">Before anything is removed from Gmail, a complete copy is saved on your Mac. Worried you might need an email later? It's right there in your local archive — searchable, readable, restorable to Gmail with one click.</p>
           </article>
 
-          <article class="feature-card reveal" aria-label="By Sender Cleanup feature">
-            <span class="feature-icon" aria-hidden="true">👤</span>
-            <h3 class="feature-title">By Sender Cleanup</h3>
-            <p class="feature-desc">See every email from a sender at once, then bulk archive or remove with one click. Perfect for killing newsletter clutter.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M8 11h6"/><path d="M11 8v6"/></svg></div>
+            <h3 class="feature-title">AI-powered search finds anything instantly</h3>
+            <p class="feature-desc">Search by meaning, not just keywords. Type "payment" and find invoices, receipts, and billing emails too. Semantic search works across your inbox and local archive — even when you're offline.</p>
           </article>
 
-          <article class="feature-card reveal" aria-label="Archive and Restore feature">
-            <span class="feature-icon" aria-hidden="true">📦</span>
-            <h3 class="feature-title">Archive &amp; Restore</h3>
-            <p class="feature-desc">Archive emails as local .eml files on your Mac. Restore any of them back to Gmail anytime — nothing is ever truly gone.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 21V7"/><path d="M16 21V11"/><path d="M12 21V9"/></svg></div>
+            <h3 class="feature-title">Export your entire archive to an external drive</h3>
+            <p class="feature-desc">One-click export creates a portable archive — organized .eml files by category, a universal MBOX file, and full metadata. Back up to an external drive, NAS, or cloud storage. Your emails, your way, forever.</p>
           </article>
 
-          <article class="feature-card reveal" aria-label="AI Insights feature">
-            <span class="feature-icon" aria-hidden="true">✨</span>
-            <h3 class="feature-title">AI Insights</h3>
-            <p class="feature-desc">Get a clear picture of what's in your inbox — top senders, category breakdown, and cleanup suggestions — at a glance.</p>
+          <article class="feature-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3 class="feature-title">Nothing is ever permanently deleted</h3>
+            <p class="feature-desc">InboxSweep doesn't delete emails. When you clean up, emails move to Gmail Trash (recoverable for 30 days) while your local archive keeps a permanent copy. Peace of mind, built into every action.</p>
           </article>
 
         </div>
@@ -869,27 +906,27 @@
     <!-- HOW IT WORKS -->
     <section aria-labelledby="how-heading">
       <div class="section-inner">
-        <span class="section-label reveal">How it works</span>
-        <h2 id="how-heading" class="reveal">Three steps to a<br/>clean inbox.</h2>
-        <p class="section-sub reveal">No complex setup, no cloud accounts. Just connect, classify, and clean.</p>
+        <span class="section-label reveal">Simple by design</span>
+        <h2 id="how-heading" class="reveal">From cluttered to clean<br/>in three steps.</h2>
+        <p class="section-sub reveal">No configuration. No cloud accounts. No learning curve.</p>
         <div class="steps">
 
           <div class="step-card reveal">
-            <div class="step-num" aria-label="Step 1">1</div>
-            <h3 class="step-title">Connect Gmail</h3>
-            <p class="step-desc">Sign in with your Google account using OAuth 2.0. InboxSweep never stores your password — only a secure token in your Mac's Keychain.</p>
+            <div class="step-num">1</div>
+            <h3 class="step-title">Connect your Gmail</h3>
+            <p class="step-desc">Sign in securely with Google OAuth. InboxSweep never sees your password — it uses a secure token stored in your Mac's Keychain. Choose what to scan: all mail, inbox only, or specific time ranges.</p>
           </div>
 
           <div class="step-card reveal">
-            <div class="step-num" aria-label="Step 2">2</div>
-            <h3 class="step-title">AI Classifies</h3>
-            <p class="step-desc">Apple's on-device NL framework reads and classifies your inbox in seconds. No internet required — everything runs on your chip.</p>
+            <div class="step-num">2</div>
+            <h3 class="step-title">AI analyzes everything</h3>
+            <p class="step-desc">On-device AI reads every email and sorts it into smart categories. See instantly how many are marketing, which need your attention, and where the biggest cleanup opportunities are. Watch results stream in live as emails are processed.</p>
           </div>
 
           <div class="step-card reveal">
-            <div class="step-num" aria-label="Step 3">3</div>
-            <h3 class="step-title">Clean Up</h3>
-            <p class="step-desc">Archive entire categories, clean up by sender, or review what needs your attention. Take back your inbox in minutes.</p>
+            <div class="step-num">3</div>
+            <h3 class="step-title">Clean up with confidence</h3>
+            <p class="step-desc">Select a category, hit archive, and watch hundreds of emails get safely stored on your Mac and moved to Gmail Trash. Search for any email later with AI-powered semantic search. Export your entire archive to an external drive anytime. Nothing is ever lost.</p>
           </div>
 
         </div>
@@ -899,53 +936,29 @@
     <!-- PRIVACY -->
     <section id="privacy" aria-labelledby="privacy-heading">
       <div class="section-inner">
+        <span class="section-label reveal">Privacy first</span>
+        <h2 id="privacy-heading" class="reveal">Your emails never leave your Mac.</h2>
+        <p class="section-sub reveal">Unlike other email tools that upload your data to their servers, InboxSweep processes everything locally. The AI runs on Apple's built-in NLEmbedding framework — no internet connection required for classification or search.</p>
         <div class="privacy-grid">
-          <div>
-            <span class="section-label reveal">Privacy</span>
-            <h2 id="privacy-heading" class="privacy-headline reveal">Your emails never<br/>leave your Mac.</h2>
-            <p class="privacy-lead reveal">
-              Most email apps send your data to the cloud. InboxSweep does the opposite.
-              Every byte stays on your machine — processed by on-device AI, stored in your own filesystem,
-              protected by FileVault and your macOS Keychain.
-            </p>
-            <a href="privacy.html" class="btn-secondary reveal" style="font-size:14px;">
-              Read the full Privacy Policy →
-            </a>
+          <div class="privacy-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <h3>On-device only</h3>
+            <p>All AI processing happens on your Mac's chip. Your emails are never uploaded to any external server — not ours, not anyone's.</p>
           </div>
-          <div class="privacy-commitments">
-
-            <div class="commitment reveal" role="listitem">
-              <span class="commitment-icon" aria-hidden="true">🔒</span>
-              <div>
-                <div class="commitment-title">No server, no cloud</div>
-                <div class="commitment-desc">InboxSweep has no backend. Your emails are never transmitted to any server — ours or anyone else's.</div>
-              </div>
-            </div>
-
-            <div class="commitment reveal" role="listitem">
-              <span class="commitment-icon" aria-hidden="true">🧠</span>
-              <div>
-                <div class="commitment-title">On-device AI only</div>
-                <div class="commitment-desc">Classification uses Apple's NLEmbedding framework — it runs entirely on your Mac's CPU/GPU, offline.</div>
-              </div>
-            </div>
-
-            <div class="commitment reveal" role="listitem">
-              <span class="commitment-icon" aria-hidden="true">🗝️</span>
-              <div>
-                <div class="commitment-title">OAuth tokens in Keychain</div>
-                <div class="commitment-desc">Your Gmail credentials are stored only in macOS Keychain, encrypted by the system. Sign out removes them instantly.</div>
-              </div>
-            </div>
-
-            <div class="commitment reveal" role="listitem">
-              <span class="commitment-icon" aria-hidden="true">♻️</span>
-              <div>
-                <div class="commitment-title">Nothing is permanent</div>
-                <div class="commitment-desc">Archived emails go to Gmail Trash — recoverable for 30 days. Your local archive persists until you delete it.</div>
-              </div>
-            </div>
-
+          <div class="privacy-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <h3>Nothing sold or shared</h3>
+            <p>We don't sell your data, share it with third parties, or use it for advertising. Your email content belongs to you and stays with you.</p>
+          </div>
+          <div class="privacy-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l18 18"/><path d="M10.5 10.677a2 2 0 0 0 2.823 2.823"/><path d="M7.362 7.561C5.68 8.74 4.279 10.42 3 12c1.889 2.991 5.282 6 9 6 1.55 0 3.043-.523 4.395-1.35"/><path d="M12 6c4.008 0 6.701 3.158 9 6a15.66 15.66 0 0 1-1.078 1.5"/></svg></div>
+            <h3>No AI training on your data</h3>
+            <p>Your emails are never used to train machine learning models. The on-device AI uses Apple's pre-trained models — your data never improves anyone else's product.</p>
+          </div>
+          <div class="privacy-card reveal">
+            <div class="feature-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg></div>
+            <h3>You control everything</h3>
+            <p>Revoke access anytime from Google Account settings. Uninstalling removes all local data. Your archive is yours to export, move, or delete at will.</p>
           </div>
         </div>
       </div>
