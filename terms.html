@@ -5,49 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms of Service — InboxSweep</title>
   <meta name="description" content="InboxSweep Terms of Service." />
+  <link rel="canonical" href="https://inboxsweep.com/terms.html" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0a0a0f;
       --bg-card: #13131a;
       --border: rgba(255,255,255,0.08);
-      --accent: #5b8dee;
-      --accent-2: #a78bfa;
+      --accent-cyan: #00d4ff;
+      --accent-green: #00e5a0;
       --text: #f0f0f5;
       --text-muted: #8888a0;
       --text-dim: #555568;
+      --nav-bg: rgba(10,10,15,0.8);
     }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 40px;
+      padding: 0 40px;
+      height: 60px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      background: var(--bg);
     }
     .nav-logo {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--text);
       text-decoration: none;
+      letter-spacing: -0.3px;
     }
-    .nav-logo .icon {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    .nav-logo img {
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
     }
     .nav-back {
       color: var(--text-muted);
@@ -72,7 +79,10 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--accent);
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 12px;
       display: block;
     }
@@ -106,14 +116,14 @@
     ul li { margin-bottom: 8px; line-height: 1.6; }
     strong { color: var(--text); font-weight: 600; }
     .highlight-box {
-      background: rgba(91,141,238,0.08);
-      border: 1px solid rgba(91,141,238,0.2);
+      background: rgba(0,212,255,0.06);
+      border: 1px solid rgba(0,212,255,0.2);
       border-radius: 12px;
       padding: 24px 28px;
       margin: 32px 0;
     }
     .highlight-box p { margin: 0; color: var(--text); font-size: 15px; }
-    a { color: var(--accent); }
+    a { color: var(--accent-cyan); }
     footer {
       padding: 40px 24px;
       border-top: 1px solid var(--border);
@@ -124,7 +134,7 @@
     .footer-links a:hover { color: var(--text); }
     .footer-copy { font-size: 13px; color: var(--text-dim); }
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
+      nav { padding: 0 20px; }
       .content { padding: 40px 20px 72px; }
       h1 { font-size: 32px; }
     }
@@ -132,135 +142,138 @@
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="nav-logo">
-      <span class="icon">✉️</span>
+  <nav aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="InboxSweep home">
+      <img src="icon.png" alt="InboxSweep app icon" width="30" height="30" />
       InboxSweep
     </a>
     <a href="/" class="nav-back">← Back to home</a>
   </nav>
 
-  <div class="content">
-    <div class="page-header">
-      <span class="page-label">Legal</span>
-      <h1>Terms of Service</h1>
-      <p class="updated">Last updated: March 30, 2026</p>
+  <main>
+    <div class="content">
+      <div class="page-header">
+        <span class="page-label">Legal</span>
+        <h1>Terms of Service</h1>
+        <p class="updated">Last updated: March 30, 2026</p>
+      </div>
+
+      <h2>Acceptance of Terms</h2>
+      <p>
+        By downloading, installing, or using InboxSweep ("the App"), you agree to these Terms of Service ("Terms").
+        If you do not agree, do not use the App.
+      </p>
+
+      <h2>Description of Service</h2>
+      <p>InboxSweep is a native macOS application that connects to your Gmail account to help you:</p>
+      <ul>
+        <li>Categorize emails using on-device AI</li>
+        <li>Archive emails locally to your Mac</li>
+        <li>Remove unwanted emails by moving them to Gmail Trash</li>
+        <li>Restore archived emails back to your Gmail inbox</li>
+      </ul>
+
+      <h2>Your Gmail Account</h2>
+      <p><strong>Authentication</strong></p>
+      <ul>
+        <li>InboxSweep accesses your Gmail through Google's OAuth 2.0 protocol</li>
+        <li>You authorize specific permissions when you connect your account</li>
+        <li>You can revoke access at any time through Google Account settings</li>
+      </ul>
+
+      <p><strong>Your Data, Your Control</strong></p>
+      <ul>
+        <li>InboxSweep processes your emails <strong>only on your Mac</strong> — never on external servers</li>
+        <li>You choose which emails to archive, remove, or restore</li>
+        <li>InboxSweep never permanently deletes emails — all removals go to Gmail Trash (recoverable for 30 days)</li>
+      </ul>
+
+      <h2>What InboxSweep Does and Does Not Do</h2>
+      <p><strong>InboxSweep Does:</strong></p>
+      <ul>
+        <li>Read your emails for display and categorization</li>
+        <li>Move emails to Gmail Trash when you choose to archive or remove them</li>
+        <li>Store archived emails as local files on your Mac</li>
+        <li>Upload emails back to Gmail when you choose to restore them</li>
+      </ul>
+
+      <p><strong>InboxSweep Does Not:</strong></p>
+      <ul>
+        <li>Send your emails to any external server</li>
+        <li>Permanently delete any emails</li>
+        <li>Access your Gmail without your explicit authorization</li>
+        <li>Share your data with any third party</li>
+        <li>Display advertising or track your behavior</li>
+      </ul>
+
+      <h2>Local Archive</h2>
+      <p>When you archive emails through InboxSweep:</p>
+      <ul>
+        <li>A complete copy is saved to your Mac's local storage</li>
+        <li>The email is moved to Gmail Trash (recoverable for 30 days)</li>
+        <li>Your local copy is permanent and remains even if Gmail permanently deletes the trashed email</li>
+        <li>You can restore emails from your local archive back to Gmail at any time</li>
+      </ul>
+
+      <h2>Limitation of Liability</h2>
+      <p>
+        InboxSweep is provided "as is" without warranties of any kind, express or implied.
+        To the fullest extent permitted by law:
+      </p>
+      <ul>
+        <li>We are not responsible for any data loss resulting from the use of InboxSweep</li>
+        <li>We recommend maintaining your own email backups independent of InboxSweep</li>
+        <li>We are not responsible for Gmail service disruptions or changes to Google's APIs</li>
+        <li>Our total liability is limited to the amount you paid for the App</li>
+      </ul>
+
+      <h2>Email Actions Are Your Responsibility</h2>
+      <p>You are responsible for:</p>
+      <ul>
+        <li>Reviewing emails before taking action (archive, trash)</li>
+        <li>Ensuring you have the right to access and manage the Gmail account you connect</li>
+        <li>Maintaining the security of your Mac and user account</li>
+      </ul>
+
+      <h2>Intellectual Property</h2>
+      <p>
+        InboxSweep and its content, features, and functionality are owned by InboxSweep
+        and are protected by applicable intellectual property laws.
+      </p>
+
+      <h2>Termination</h2>
+      <ul>
+        <li>You may stop using InboxSweep at any time by uninstalling the App</li>
+        <li>We may terminate or suspend access to the App at any time for violation of these Terms</li>
+        <li>Upon termination, your local archive remains on your Mac</li>
+      </ul>
+
+      <h2>Changes to Terms</h2>
+      <p>
+        We may modify these Terms at any time. Continued use of the App after changes
+        constitutes acceptance of the modified Terms.
+      </p>
+
+      <h2>Governing Law</h2>
+      <p>These Terms are governed by the laws of British Columbia, Canada.</p>
+
+      <h2>Contact</h2>
+      <p>
+        For questions about these Terms:<br />
+        <strong>Email:</strong> <a href="mailto:legal@inboxsweep.com">legal@inboxsweep.com</a><br />
+        <strong>Team:</strong> InboxSweep Team
+      </p>
     </div>
-
-    <h2>Acceptance of Terms</h2>
-    <p>
-      By downloading, installing, or using InboxSweep ("the App"), you agree to these Terms of Service ("Terms").
-      If you do not agree, do not use the App.
-    </p>
-
-    <h2>Description of Service</h2>
-    <p>InboxSweep is a native macOS application that connects to your Gmail account to help you:</p>
-    <ul>
-      <li>Categorize emails using on-device AI</li>
-      <li>Archive emails locally to your Mac</li>
-      <li>Remove unwanted emails by moving them to Gmail Trash</li>
-      <li>Restore archived emails back to your Gmail inbox</li>
-    </ul>
-
-    <h2>Your Gmail Account</h2>
-    <p><strong>Authentication</strong></p>
-    <ul>
-      <li>InboxSweep accesses your Gmail through Google's OAuth 2.0 protocol</li>
-      <li>You authorize specific permissions when you connect your account</li>
-      <li>You can revoke access at any time through Google Account settings</li>
-    </ul>
-
-    <p><strong>Your Data, Your Control</strong></p>
-    <ul>
-      <li>InboxSweep processes your emails <strong>only on your Mac</strong> — never on external servers</li>
-      <li>You choose which emails to archive, remove, or restore</li>
-      <li>InboxSweep never permanently deletes emails — all removals go to Gmail Trash (recoverable for 30 days)</li>
-    </ul>
-
-    <h2>What InboxSweep Does and Does Not Do</h2>
-    <p><strong>InboxSweep Does:</strong></p>
-    <ul>
-      <li>Read your emails for display and categorization</li>
-      <li>Move emails to Gmail Trash when you choose to archive or remove them</li>
-      <li>Store archived emails as local files on your Mac</li>
-      <li>Upload emails back to Gmail when you choose to restore them</li>
-    </ul>
-
-    <p><strong>InboxSweep Does Not:</strong></p>
-    <ul>
-      <li>Send your emails to any external server</li>
-      <li>Permanently delete any emails</li>
-      <li>Access your Gmail without your explicit authorization</li>
-      <li>Share your data with any third party</li>
-      <li>Display advertising or track your behavior</li>
-    </ul>
-
-    <h2>Local Archive</h2>
-    <p>When you archive emails through InboxSweep:</p>
-    <ul>
-      <li>A complete copy is saved to your Mac's local storage</li>
-      <li>The email is moved to Gmail Trash (recoverable for 30 days)</li>
-      <li>Your local copy is permanent and remains even if Gmail permanently deletes the trashed email</li>
-      <li>You can restore emails from your local archive back to Gmail at any time</li>
-    </ul>
-
-    <h2>Limitation of Liability</h2>
-    <p>
-      InboxSweep is provided "as is" without warranties of any kind, express or implied.
-      To the fullest extent permitted by law:
-    </p>
-    <ul>
-      <li>We are not responsible for any data loss resulting from the use of InboxSweep</li>
-      <li>We recommend maintaining your own email backups independent of InboxSweep</li>
-      <li>We are not responsible for Gmail service disruptions or changes to Google's APIs</li>
-      <li>Our total liability is limited to the amount you paid for the App</li>
-    </ul>
-
-    <h2>Email Actions Are Your Responsibility</h2>
-    <p>You are responsible for:</p>
-    <ul>
-      <li>Reviewing emails before taking action (archive, trash)</li>
-      <li>Ensuring you have the right to access and manage the Gmail account you connect</li>
-      <li>Maintaining the security of your Mac and user account</li>
-    </ul>
-
-    <h2>Intellectual Property</h2>
-    <p>
-      InboxSweep and its content, features, and functionality are owned by Mehdi Kameli
-      and are protected by applicable intellectual property laws.
-    </p>
-
-    <h2>Termination</h2>
-    <ul>
-      <li>You may stop using InboxSweep at any time by uninstalling the App</li>
-      <li>We may terminate or suspend access to the App at any time for violation of these Terms</li>
-      <li>Upon termination, your local archive remains on your Mac</li>
-    </ul>
-
-    <h2>Changes to Terms</h2>
-    <p>
-      We may modify these Terms at any time. Continued use of the App after changes
-      constitutes acceptance of the modified Terms.
-    </p>
-
-    <h2>Governing Law</h2>
-    <p>These Terms are governed by the laws of British Columbia, Canada.</p>
-
-    <h2>Contact</h2>
-    <p>
-      For questions about these Terms:<br />
-      <strong>Email:</strong> <a href="mailto:legal@inboxsweep.com">legal@inboxsweep.com</a><br />
-      <strong>Developer:</strong> Mehdi Kameli
-    </p>
-  </div>
+  </main>
 
   <footer>
     <ul class="footer-links">
       <li><a href="/">Home</a></li>
       <li><a href="privacy.html">Privacy Policy</a></li>
       <li><a href="terms.html">Terms of Service</a></li>
+      <li><a href="mailto:support@inboxsweep.com">Support</a></li>
     </ul>
-    <p class="footer-copy">© 2026 Mehdi Kameli. All rights reserved.</p>
+    <p class="footer-copy">© 2026 InboxSweep. All rights reserved.</p>
   </footer>
 
 </body>

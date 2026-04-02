@@ -2,25 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="icon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>InboxSweep — Take back your inbox</title>
-  <meta name="description" content="InboxSweep is a native macOS app that helps you organize and clean up your Gmail inbox with complete privacy. All processing happens on your Mac." />
+
+  <!-- Primary Meta -->
+  <title>InboxSweep — AI Email Cleanup for Mac. Privately.</title>
+  <meta name="description" content="InboxSweep uses on-device AI to classify, organize, and clean your Gmail inbox on Mac. 100% private — your emails never leave your Mac." />
+  <meta name="keywords" content="email cleanup mac, gmail organizer, inbox cleaner, AI email, privacy email app, mac email app, gmail cleaner, email organizer mac" />
+  <link rel="canonical" href="https://inboxsweep.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://inboxsweep.com/" />
+  <meta property="og:title" content="InboxSweep — AI Email Cleanup for Mac. Privately." />
+  <meta property="og:description" content="On-device AI classifies your Gmail in seconds. Archive, clean up, and reclaim your inbox — 100% privately on your Mac." />
+  <meta property="og:image" content="https://inboxsweep.com/icon.png" />
+  <meta property="og:site_name" content="InboxSweep" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="InboxSweep — AI Email Cleanup for Mac. Privately." />
+  <meta name="twitter:description" content="On-device AI classifies your Gmail in seconds. Archive, clean up, and reclaim your inbox — 100% privately on your Mac." />
+  <meta name="twitter:image" content="https://inboxsweep.com/icon.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "InboxSweep",
+    "operatingSystem": "macOS",
+    "applicationCategory": "ProductivityApplication",
+    "description": "InboxSweep uses on-device AI to classify, organize, and clean your Gmail inbox on Mac. 100% private — your emails never leave your Mac.",
+    "url": "https://inboxsweep.com",
+    "image": "https://inboxsweep.com/icon.png",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "InboxSweep"
+    }
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #0a0a0f;
-      --bg-card: #13131a;
-      --bg-card-hover: #1a1a24;
+      --bg-card: rgba(255,255,255,0.04);
+      --bg-card-hover: rgba(255,255,255,0.07);
       --border: rgba(255,255,255,0.08);
-      --accent: #5b8dee;
-      --accent-2: #a78bfa;
-      --accent-glow: rgba(91,141,238,0.3);
+      --border-bright: rgba(255,255,255,0.14);
+      --accent-cyan: #00d4ff;
+      --accent-green: #00e5a0;
+      --accent-mid: #00bfa0;
       --text: #f0f0f5;
       --text-muted: #8888a0;
-      --text-dim: #555568;
+      --text-dim: #44445a;
+      --nav-bg: rgba(10,10,15,0.8);
       --radius: 16px;
       --radius-sm: 10px;
     }
@@ -28,23 +70,25 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 40px;
-      background: rgba(10,10,15,0.8);
+      padding: 0 40px;
+      height: 60px;
+      background: var(--nav-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -54,25 +98,22 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--text);
       text-decoration: none;
       letter-spacing: -0.3px;
     }
 
-    .nav-logo .icon {
-      width: 32px; height: 32px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    .nav-logo img {
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 32px;
       list-style: none;
     }
@@ -88,185 +129,286 @@
     .nav-links a:hover { color: var(--text); }
 
     .nav-cta {
-      background: var(--accent);
-      color: #fff !important;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+      color: #000 !important;
       padding: 8px 18px;
       border-radius: 8px;
       font-weight: 600 !important;
-      transition: background 0.2s, transform 0.15s !important;
+      font-size: 13px !important;
+      transition: opacity 0.2s, transform 0.2s !important;
     }
 
-    .nav-cta:hover {
-      background: #4a7ce0 !important;
-      transform: translateY(-1px);
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text);
     }
 
-    /* HERO */
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      margin: 4px 0;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,15,0.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      z-index: 99;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-nav.open { display: flex; }
+
+    .mobile-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+
+    .mobile-nav a:last-child { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--text); }
+
+    /* ── HERO ── */
     .hero {
-      min-height: 100vh;
+      position: relative;
+      min-height: 90vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
+      padding: 80px 24px 60px;
       overflow: hidden;
     }
 
     .hero::before {
       content: '';
       position: absolute;
-      top: -200px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px; height: 800px;
-      background: radial-gradient(circle, rgba(91,141,238,0.15) 0%, transparent 70%);
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,212,255,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 80% 60%, rgba(0,229,160,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 20% 70%, rgba(0,212,255,0.06) 0%, transparent 60%);
       pointer-events: none;
     }
 
+    /* grain texture */
     .hero::after {
       content: '';
       position: absolute;
-      bottom: -100px; left: 30%;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(167,139,250,0.1) 0%, transparent 70%);
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      opacity: 0.4;
       pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      background: rgba(91,141,238,0.1);
-      border: 1px solid rgba(91,141,238,0.3);
+      gap: 8px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
       border-radius: 100px;
-      font-size: 13px;
+      padding: 6px 16px;
+      font-size: 12px;
       font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 32px;
-      letter-spacing: 0.3px;
+      color: var(--accent-cyan);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeUp 0.6s ease both;
     }
 
-    .hero-icon {
-      width: 120px; height: 120px;
-      background: linear-gradient(135deg, #1e2d4a 0%, #1a1a30 100%);
-      border: 1px solid rgba(91,141,238,0.3);
-      border-radius: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 40px;
-      font-size: 56px;
-      box-shadow: 0 20px 60px rgba(91,141,238,0.2), 0 0 0 1px rgba(91,141,238,0.1);
-      position: relative;
-      z-index: 1;
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
     }
 
     h1 {
-      font-size: clamp(48px, 8vw, 80px);
+      font-size: clamp(44px, 7vw, 82px);
       font-weight: 800;
-      letter-spacing: -2px;
+      letter-spacing: -3px;
       line-height: 1.05;
       margin-bottom: 24px;
-      position: relative;
-      z-index: 1;
+      animation: fadeUp 0.6s 0.1s ease both;
     }
 
-    h1 .gradient {
-      background: linear-gradient(135deg, #fff 30%, var(--accent-2));
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-green) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
-    .hero-tagline {
-      font-size: clamp(18px, 3vw, 24px);
+    .hero-sub {
+      font-size: clamp(17px, 2.2vw, 22px);
       color: var(--text-muted);
       max-width: 560px;
-      margin: 0 auto 48px;
-      font-weight: 400;
-      position: relative;
-      z-index: 1;
+      margin: 0 auto 40px;
+      line-height: 1.55;
+      animation: fadeUp 0.6s 0.2s ease both;
     }
 
-    .hero-cta-group {
+    .hero-actions {
       display: flex;
-      gap: 16px;
       align-items: center;
       justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
+      animation: fadeUp 0.6s 0.3s ease both;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 16px 32px;
-      background: linear-gradient(135deg, var(--accent), #4a7ce0);
-      color: #fff;
-      text-decoration: none;
-      border-radius: var(--radius-sm);
-      font-size: 16px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+      color: #000;
       font-weight: 700;
-      letter-spacing: -0.2px;
+      font-size: 16px;
+      padding: 14px 32px;
+      border-radius: 12px;
+      text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 8px 32px rgba(91,141,238,0.4);
+      box-shadow: 0 0 40px rgba(0,212,255,0.25), 0 4px 16px rgba(0,0,0,0.3);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(91,141,238,0.5);
+      box-shadow: 0 0 60px rgba(0,212,255,0.35), 0 8px 24px rgba(0,0,0,0.4);
     }
 
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 16px 32px;
-      background: transparent;
       color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 500;
       text-decoration: none;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: 16px;
+      transition: color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--text); }
+
+    .hero-icon {
+      width: 140px;
+      height: 140px;
+      border-radius: 32px;
+      margin: 56px auto 0;
+      display: block;
+      box-shadow: 0 0 80px rgba(0,212,255,0.2), 0 24px 64px rgba(0,0,0,0.5);
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    /* ── SOCIAL PROOF ── */
+    .proof-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 28px 24px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .proof-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 32px;
+      flex: 1;
+      min-width: 220px;
+      justify-content: center;
+    }
+
+    .proof-item + .proof-item {
+      border-left: 1px solid var(--border);
+    }
+
+    .proof-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .proof-text {
+      font-size: 14px;
       font-weight: 600;
-      transition: color 0.2s, border-color 0.2s, transform 0.2s;
-    }
-
-    .btn-secondary:hover {
       color: var(--text);
-      border-color: rgba(255,255,255,0.2);
-      transform: translateY(-2px);
+      white-space: nowrap;
     }
 
-    .hero-note {
-      margin-top: 24px;
-      font-size: 13px;
-      color: var(--text-dim);
-      position: relative;
-      z-index: 1;
+    .proof-sub {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
-    /* SECTION COMMON */
-    section { padding: 100px 24px; }
+    /* ── SECTIONS ── */
+    section {
+      padding: 100px 24px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
     .section-label {
-      display: inline-block;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      margin-bottom: 14px;
     }
 
     h2 {
-      font-size: clamp(32px, 5vw, 48px);
+      font-size: clamp(32px, 4.5vw, 52px);
       font-weight: 800;
-      letter-spacing: -1.5px;
+      letter-spacing: -2px;
       line-height: 1.1;
       margin-bottom: 16px;
     }
@@ -275,174 +417,226 @@
       font-size: 18px;
       color: var(--text-muted);
       max-width: 560px;
-      margin: 0 auto 64px;
+      line-height: 1.6;
+      margin-bottom: 64px;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
+    /* ── FEATURES GRID ── */
+    #features {
+      background: rgba(255,255,255,0.01);
     }
-
-    /* FEATURES */
-    #features { background: var(--bg); }
-
-    .features-header { text-align: center; }
 
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 64px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
     .feature-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 32px;
-      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      padding: 28px;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
     .feature-card:hover {
       background: var(--bg-card-hover);
-      transform: translateY(-4px);
-      border-color: rgba(91,141,238,0.2);
+      border-color: var(--border-bright);
+      transform: translateY(-2px);
     }
 
+    .feature-card:hover::before { opacity: 1; }
+
     .feature-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
+      font-size: 28px;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(16.67% + 16px);
+      right: calc(16.67% + 16px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+      opacity: 0.3;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,229,160,0.15));
+      border: 1px solid rgba(0,212,255,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      margin-bottom: 20px;
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 auto 20px;
+      color: var(--accent-cyan);
     }
 
-    .feature-card h3 {
+    .step-title {
       font-size: 18px;
       font-weight: 700;
       margin-bottom: 10px;
       letter-spacing: -0.3px;
     }
 
-    .feature-card p {
+    .step-desc {
       font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    /* HOW IT WORKS */
-    #how-it-works {
-      background: linear-gradient(180deg, var(--bg) 0%, #0d0d18 100%);
-      text-align: center;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-      position: relative;
-    }
-
-    .step {
-      padding: 40px 32px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      position: relative;
-    }
-
-    .step-number {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: 800;
-      color: #fff;
-      margin: 0 auto 24px;
-    }
-
-    .step h3 {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: -0.3px;
-    }
-
-    .step p {
-      font-size: 15px;
       color: var(--text-muted);
       line-height: 1.6;
     }
 
-    /* PRIVACY */
+    /* ── PRIVACY ── */
     #privacy {
-      background: linear-gradient(135deg, #0d1520 0%, #0f0f1e 50%, #130d20 100%);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background: rgba(0,212,255,0.02);
+      border-top: 1px solid rgba(0,212,255,0.08);
+      border-bottom: 1px solid rgba(0,212,255,0.08);
     }
 
-    #privacy::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(91,141,238,0.08) 0%, transparent 70%);
-      pointer-events: none;
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .privacy-headline {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .privacy-lead {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 32px;
     }
 
     .privacy-commitments {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 56px;
-      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .commitment {
       display: flex;
-      gap: 16px;
-      padding: 24px;
-      background: rgba(255,255,255,0.03);
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      transition: border-color 0.2s;
     }
+
+    .commitment:hover { border-color: var(--border-bright); }
 
     .commitment-icon {
-      font-size: 24px;
+      font-size: 20px;
       flex-shrink: 0;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
-    .commitment h4 {
+    .commitment-title {
       font-size: 15px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 3px;
     }
 
-    .commitment p {
+    .commitment-desc {
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.5;
     }
 
-    .privacy-cta {
-      margin-top: 48px;
-      position: relative;
-      z-index: 1;
+    /* ── DOWNLOAD CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 120px 24px;
     }
 
-    /* FOOTER */
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 16px;
+    }
+
+    .cta-sub {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+
+    .cta-btn-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cta-req {
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ── FOOTER ── */
     footer {
-      padding: 48px 24px;
       border-top: 1px solid var(--border);
-      background: var(--bg);
+      padding: 40px 24px;
     }
 
     .footer-inner {
@@ -452,27 +646,23 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 20px;
     }
 
     .footer-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--text);
       text-decoration: none;
-      font-size: 16px;
     }
 
-    .footer-logo .icon {
-      width: 28px; height: 28px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
+    .footer-logo img {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
     }
 
     .footer-links {
@@ -495,215 +685,331 @@
       color: var(--text-dim);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 40px rgba(0,212,255,0.25), 0 4px 16px rgba(0,0,0,0.3); }
+      50%       { box-shadow: 0 0 60px rgba(0,212,255,0.4),  0 4px 16px rgba(0,0,0,0.3); }
+    }
+
+    .btn-primary { animation: pulse-glow 3s ease-in-out infinite; }
+    .btn-primary:hover { animation: none; }
+
+    /* scroll-reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: 1fr; }
+      .steps::before { display: none; }
+      .privacy-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
       .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      .features-grid { grid-template-columns: 1fr; }
+      .proof-item + .proof-item { border-left: none; border-top: 1px solid var(--border); }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
       section { padding: 72px 20px; }
-      .hero { padding: 100px 20px 60px; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-links { justify-content: center; }
+    }
+
+    @media (min-width: 601px) {
+      .mobile-nav { display: none !important; }
     }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav>
-    <a href="/" class="nav-logo">
-      <span class="icon">✉️</span>
+  <nav aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="InboxSweep home">
+      <img src="icon.png" alt="InboxSweep app icon" width="30" height="30" />
       InboxSweep
     </a>
-    <ul class="nav-links">
+    <ul class="nav-links" role="list">
       <li><a href="#features">Features</a></li>
-      <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#privacy">Privacy</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><a href="#" class="nav-cta">Download</a></li>
+      <li><a href="#download" class="nav-cta">Download</a></li>
     </ul>
+    <button class="nav-hamburger" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge">✦ Now available for macOS</div>
-    <div class="hero-icon">✉️</div>
-    <h1>
-      <span class="gradient">Take back<br />your inbox.</span>
-    </h1>
-    <p class="hero-tagline">
-      InboxSweep cleans up your Gmail with smart on-device AI —
-      no servers, no tracking, total privacy.
-    </p>
-    <div class="hero-cta-group">
-      <a href="#" class="btn-primary">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-        Download for Mac
-      </a>
-      <a href="#how-it-works" class="btn-secondary">See how it works →</a>
-    </div>
-    <p class="hero-note">macOS 14 Sonoma or later · Free during beta</p>
-  </section>
+  <!-- Mobile nav -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#features" onclick="closeMobileNav()">Features</a>
+    <a href="#privacy" onclick="closeMobileNav()">Privacy</a>
+    <a href="#download" onclick="closeMobileNav()">Download for Mac</a>
+    <a href="privacy.html" onclick="closeMobileNav()">Privacy Policy</a>
+    <a href="terms.html" onclick="closeMobileNav()">Terms</a>
+  </nav>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <div class="container">
-      <div class="features-header">
-        <span class="section-label">Features</span>
-        <h2>Everything you need,<br />nothing you don't.</h2>
-        <p class="section-sub">Built for people who value their time and their privacy.</p>
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero">
+      <div class="hero-content">
+        <span class="hero-badge">Now available for macOS</span>
+        <h1>Clean your inbox<br/>with AI. <span class="gradient-text">Privately.</span></h1>
+        <p class="hero-sub">
+          On-device AI classifies your Gmail in seconds. Archive hundreds of emails,
+          find anything instantly, and reclaim your focus — without ever sending your mail to a server.
+        </p>
+        <div class="hero-actions">
+          <a href="#download" class="btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" fill="currentColor" opacity="0.15"/>
+              <path d="M8 12.5L12 16.5L16 12.5M12 7.5V16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Download for Mac
+          </a>
+          <a href="#features" class="btn-secondary">
+            See how it works
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <img src="icon.png" alt="InboxSweep macOS app icon" class="hero-icon" width="140" height="140" />
       </div>
-      <div class="features-grid">
+    </section>
 
-        <div class="feature-card">
-          <div class="feature-icon" style="background: linear-gradient(135deg, rgba(91,141,238,0.15), rgba(91,141,238,0.05));">🔒</div>
-          <h3>Private by Default</h3>
-          <p>All email processing happens on your Mac using Apple's on-device AI. Your emails never touch a server. Ever.</p>
+    <!-- SOCIAL PROOF BAR -->
+    <div class="proof-bar" role="complementary" aria-label="Key stats">
+      <div class="proof-inner">
+        <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true">⚡</span>
+          <div>
+            <div class="proof-text">500+ emails classified in seconds</div>
+            <div class="proof-sub">On-device AI, no waiting</div>
+          </div>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon" style="background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(167,139,250,0.05));">🗂️</div>
-          <h3>Smart Categories</h3>
-          <p>Newsletters, receipts, notifications, social — InboxSweep sorts your mail into categories so you can deal with them in bulk.</p>
+        <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true">🔒</span>
+          <div>
+            <div class="proof-text">100% on-device AI</div>
+            <div class="proof-sub">Apple NLEmbedding framework</div>
+          </div>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon" style="background: linear-gradient(135deg, rgba(52,211,153,0.15), rgba(52,211,153,0.05));">📦</div>
-          <h3>Archive & Protect</h3>
-          <p>Save emails as local .eml files on your Mac before cleaning up. Your archive is yours — no cloud required.</p>
+        <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true">🛡️</span>
+          <div>
+            <div class="proof-text">Zero data leaves your Mac</div>
+            <div class="proof-sub">Private by design, not policy</div>
+          </div>
         </div>
-
-        <div class="feature-card">
-          <div class="feature-icon" style="background: linear-gradient(135deg, rgba(251,191,36,0.15), rgba(251,191,36,0.05));">↩️</div>
-          <h3>Restore Anytime</h3>
-          <p>Changed your mind? Restore any archived email back to your Gmail inbox with one click. No data ever lost.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon" style="background: linear-gradient(135deg, rgba(248,113,113,0.15), rgba(248,113,113,0.05));">📊</div>
-          <h3>Storage Insights</h3>
-          <p>See what's eating your Gmail storage. Spot large attachments and old threads that are wasting space.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon" style="background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05));">🛡️</div>
-          <h3>Never Deletes</h3>
-          <p>InboxSweep only moves emails to Gmail Trash — never permanent deletion. Everything is recoverable for 30 days.</p>
-        </div>
-
       </div>
     </div>
-  </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how-it-works">
-    <div class="container">
-      <span class="section-label">How It Works</span>
-      <h2>Clean inbox in three steps.</h2>
-      <p class="section-sub">Getting started takes under a minute.</p>
-      <div class="steps">
+    <!-- FEATURES -->
+    <section id="features" aria-labelledby="features-heading">
+      <div class="section-inner">
+        <span class="section-label reveal">Features</span>
+        <h2 id="features-heading" class="reveal">Everything you need to<br/>conquer your inbox.</h2>
+        <p class="section-sub reveal">Six powerful tools that work together — all running locally on your Mac, all respecting your privacy.</p>
+        <div class="features-grid">
 
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Connect Gmail</h3>
-          <p>Sign in with your Google account. InboxSweep requests only the permissions it needs — you can revoke access anytime from your Google settings.</p>
+          <article class="feature-card reveal" aria-label="Smart Categories feature">
+            <span class="feature-icon" aria-hidden="true">🗂️</span>
+            <h3 class="feature-title">Smart Categories</h3>
+            <p class="feature-desc">On-device AI sorts your inbox into meaningful categories — newsletters, receipts, notifications, and more — automatically.</p>
+          </article>
+
+          <article class="feature-card reveal" aria-label="Semantic Search feature">
+            <span class="feature-icon" aria-hidden="true">🔍</span>
+            <h3 class="feature-title">Semantic Search</h3>
+            <p class="feature-desc">Find any email by meaning, not just keywords. Ask naturally and get the right result, even from archived mail.</p>
+          </article>
+
+          <article class="feature-card reveal" aria-label="Needs Attention feature">
+            <span class="feature-icon" aria-hidden="true">📌</span>
+            <h3 class="feature-title">Needs Attention</h3>
+            <p class="feature-desc">AI surfaces emails that actually require your action — so the important stuff never drowns in the noise.</p>
+          </article>
+
+          <article class="feature-card reveal" aria-label="By Sender Cleanup feature">
+            <span class="feature-icon" aria-hidden="true">👤</span>
+            <h3 class="feature-title">By Sender Cleanup</h3>
+            <p class="feature-desc">See every email from a sender at once, then bulk archive or remove with one click. Perfect for killing newsletter clutter.</p>
+          </article>
+
+          <article class="feature-card reveal" aria-label="Archive and Restore feature">
+            <span class="feature-icon" aria-hidden="true">📦</span>
+            <h3 class="feature-title">Archive &amp; Restore</h3>
+            <p class="feature-desc">Archive emails as local .eml files on your Mac. Restore any of them back to Gmail anytime — nothing is ever truly gone.</p>
+          </article>
+
+          <article class="feature-card reveal" aria-label="AI Insights feature">
+            <span class="feature-icon" aria-hidden="true">✨</span>
+            <h3 class="feature-title">AI Insights</h3>
+            <p class="feature-desc">Get a clear picture of what's in your inbox — top senders, category breakdown, and cleanup suggestions — at a glance.</p>
+          </article>
+
         </div>
-
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Scan & Categorize</h3>
-          <p>InboxSweep scans your inbox using on-device AI. Emails are grouped into categories like Newsletters, Receipts, Notifications, and more.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Clean Up</h3>
-          <p>Review each category and decide: archive locally, move to trash, or keep. Bulk actions make it fast. Your local archive keeps a copy safe.</p>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PRIVACY -->
-  <section id="privacy">
-    <div class="container">
-      <span class="section-label">Privacy</span>
-      <h2>Your emails stay on<br />your Mac. Period.</h2>
-      <p class="section-sub">
-        We don't have servers that store your email. We can't read your mail because it never reaches us.
-      </p>
-      <div class="privacy-commitments">
+    <!-- HOW IT WORKS -->
+    <section aria-labelledby="how-heading">
+      <div class="section-inner">
+        <span class="section-label reveal">How it works</span>
+        <h2 id="how-heading" class="reveal">Three steps to a<br/>clean inbox.</h2>
+        <p class="section-sub reveal">No complex setup, no cloud accounts. Just connect, classify, and clean.</p>
+        <div class="steps">
 
-        <div class="commitment">
-          <span class="commitment-icon">🖥️</span>
-          <div>
-            <h4>On-device processing</h4>
-            <p>AI categorization runs entirely on your Mac using Apple's NLEmbedding framework. No cloud calls.</p>
+          <div class="step-card reveal">
+            <div class="step-num" aria-label="Step 1">1</div>
+            <h3 class="step-title">Connect Gmail</h3>
+            <p class="step-desc">Sign in with your Google account using OAuth 2.0. InboxSweep never stores your password — only a secure token in your Mac's Keychain.</p>
           </div>
-        </div>
 
-        <div class="commitment">
-          <span class="commitment-icon">🚫</span>
-          <div>
-            <h4>No external servers</h4>
-            <p>InboxSweep has no backend. Your emails are never transmitted to any server we control.</p>
+          <div class="step-card reveal">
+            <div class="step-num" aria-label="Step 2">2</div>
+            <h3 class="step-title">AI Classifies</h3>
+            <p class="step-desc">Apple's on-device NL framework reads and classifies your inbox in seconds. No internet required — everything runs on your chip.</p>
           </div>
-        </div>
 
-        <div class="commitment">
-          <span class="commitment-icon">🔑</span>
-          <div>
-            <h4>Tokens in Keychain</h4>
-            <p>OAuth tokens are stored securely in the macOS Keychain — never in plain text or iCloud sync.</p>
+          <div class="step-card reveal">
+            <div class="step-num" aria-label="Step 3">3</div>
+            <h3 class="step-title">Clean Up</h3>
+            <p class="step-desc">Archive entire categories, clean up by sender, or review what needs your attention. Take back your inbox in minutes.</p>
           </div>
-        </div>
 
-        <div class="commitment">
-          <span class="commitment-icon">📂</span>
-          <div>
-            <h4>Archive stays local</h4>
-            <p>Archived emails live in your Mac's Application Support folder. Delete the app, delete the data.</p>
-          </div>
         </div>
-
-        <div class="commitment">
-          <span class="commitment-icon">🗑️</span>
-          <div>
-            <h4>Trash, not delete</h4>
-            <p>InboxSweep never permanently deletes email. Everything goes to Gmail Trash — recoverable for 30 days.</p>
-          </div>
-        </div>
-
-        <div class="commitment">
-          <span class="commitment-icon">📋</span>
-          <div>
-            <h4>Google API compliance</h4>
-            <p>Full compliance with the Google API Services User Data Policy and Limited Use requirements.</p>
-          </div>
-        </div>
-
       </div>
-      <div class="privacy-cta">
-        <a href="privacy.html" class="btn-secondary" style="display: inline-flex;">Read the full Privacy Policy →</a>
+    </section>
+
+    <!-- PRIVACY -->
+    <section id="privacy" aria-labelledby="privacy-heading">
+      <div class="section-inner">
+        <div class="privacy-grid">
+          <div>
+            <span class="section-label reveal">Privacy</span>
+            <h2 id="privacy-heading" class="privacy-headline reveal">Your emails never<br/>leave your Mac.</h2>
+            <p class="privacy-lead reveal">
+              Most email apps send your data to the cloud. InboxSweep does the opposite.
+              Every byte stays on your machine — processed by on-device AI, stored in your own filesystem,
+              protected by FileVault and your macOS Keychain.
+            </p>
+            <a href="privacy.html" class="btn-secondary reveal" style="font-size:14px;">
+              Read the full Privacy Policy →
+            </a>
+          </div>
+          <div class="privacy-commitments">
+
+            <div class="commitment reveal" role="listitem">
+              <span class="commitment-icon" aria-hidden="true">🔒</span>
+              <div>
+                <div class="commitment-title">No server, no cloud</div>
+                <div class="commitment-desc">InboxSweep has no backend. Your emails are never transmitted to any server — ours or anyone else's.</div>
+              </div>
+            </div>
+
+            <div class="commitment reveal" role="listitem">
+              <span class="commitment-icon" aria-hidden="true">🧠</span>
+              <div>
+                <div class="commitment-title">On-device AI only</div>
+                <div class="commitment-desc">Classification uses Apple's NLEmbedding framework — it runs entirely on your Mac's CPU/GPU, offline.</div>
+              </div>
+            </div>
+
+            <div class="commitment reveal" role="listitem">
+              <span class="commitment-icon" aria-hidden="true">🗝️</span>
+              <div>
+                <div class="commitment-title">OAuth tokens in Keychain</div>
+                <div class="commitment-desc">Your Gmail credentials are stored only in macOS Keychain, encrypted by the system. Sign out removes them instantly.</div>
+              </div>
+            </div>
+
+            <div class="commitment reveal" role="listitem">
+              <span class="commitment-icon" aria-hidden="true">♻️</span>
+              <div>
+                <div class="commitment-title">Nothing is permanent</div>
+                <div class="commitment-desc">Archived emails go to Gmail Trash — recoverable for 30 days. Your local archive persists until you delete it.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- DOWNLOAD CTA -->
+    <section id="download" class="cta-section" aria-labelledby="cta-heading">
+      <div class="cta-inner">
+        <span class="section-label">Download</span>
+        <h2 id="cta-heading" class="reveal">Ready to take back<br/>your inbox?</h2>
+        <p class="cta-sub reveal">Free to download. No account required. Your emails stay yours.</p>
+        <div class="cta-btn-wrap reveal">
+          <a href="https://github.com/mzkameli/InboxSweep/releases/latest" class="btn-primary" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3Z" fill="currentColor" opacity="0.15"/>
+              <path d="M8 12.5L12 16.5L16 12.5M12 7.5V16.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Download for Mac
+          </a>
+          <p class="cta-req">Requires macOS 14 Sonoma or later · Apple Silicon &amp; Intel</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <a href="/" class="footer-logo">
-        <span class="icon">✉️</span>
+      <a href="/" class="footer-logo" aria-label="InboxSweep home">
+        <img src="icon.png" alt="InboxSweep logo" width="24" height="24" />
         InboxSweep
       </a>
-      <ul class="footer-links">
+      <ul class="footer-links" role="list">
         <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="terms.html">Terms</a></li>
         <li><a href="mailto:support@inboxsweep.com">Support</a></li>
       </ul>
-      <p class="footer-copy">© 2026 Mehdi Kameli. All rights reserved.</p>
+      <p class="footer-copy">© 2026 InboxSweep. All rights reserved.</p>
     </div>
   </footer>
+
+  <script>
+    // Mobile nav toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', false);
+    }
+
+    // Scroll reveal (CSS-driven, minimal JS)
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
