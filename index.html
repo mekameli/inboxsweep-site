@@ -755,6 +755,24 @@
       height: 40px;
       background: var(--border);
     }
+  
+    @media (max-width: 768px) {
+      .proof-inner {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      .proof-item {
+        flex: 0 0 40%;
+        text-align: center;
+      }
+      .proof-divider {
+        display: none;
+      }
+      .proof-number {
+        font-size: 1.3rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -839,22 +857,6 @@
       </div>
     </div>
         <div class="proof-item">
-          <span class="proof-icon" aria-hidden="true">🔒</span>
-          <div>
-            <div class="proof-text">100% on-device AI</div>
-            <div class="proof-sub">Apple NLEmbedding framework</div>
-          </div>
-        </div>
-        <div class="proof-item">
-          <span class="proof-icon" aria-hidden="true">🛡️</span>
-          <div>
-            <div class="proof-text">Zero data leaves your Mac</div>
-            <div class="proof-sub">Private by design, not policy</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- FEATURES -->
     <section id="features" aria-labelledby="features-heading">
       <div class="section-inner">
