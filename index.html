@@ -712,15 +712,13 @@
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
+    
       .steps { grid-template-columns: 1fr; }
       .steps::before { display: none; }
       .privacy-grid { grid-template-columns: 1fr; gap: 32px; }
     }
 
-    @media (max-width: 600px) {
-      nav { padding: 0 20px; }
+    
       .nav-links { display: none; }
       .nav-hamburger { display: block; }
       .features-grid { grid-template-columns: 1fr; }
@@ -729,8 +727,7 @@
       section { padding: 72px 20px; }
     }
 
-    @media (min-width: 601px) {
-      .mobile-nav { display: none !important; }
+    
     }
   
     .feature-icon-wrap {
@@ -756,80 +753,51 @@
       background: var(--border);
     }
   
-    @media (max-width: 768px) {
-      .proof-inner {
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-      .proof-item {
-        flex: 0 0 40%;
-        text-align: center;
-      }
-      .proof-divider {
-        display: none;
-      }
-      .proof-number {
-        font-size: 1.3rem;
-      }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .privacy-grid { grid-template-columns: repeat(2, 1fr); }
     }
-  
-    @media (max-width: 768px) {
-      .proof-inner {
-        flex-wrap: wrap;
-        gap: 20px;
-        justify-content: center;
-      }
-      .proof-item {
-        flex: 0 0 40%;
-        text-align: center;
-      }
-      .proof-divider {
-        display: none;
-      }
-      .proof-number {
-        font-size: 1.3rem;
-      }
-      html, body {
-        overflow-x: hidden;
-        width: 100%;
-      }
-      .section-inner {
-        padding: 0 20px;
-        max-width: 100%;
-      }
-      section {
-        padding: 60px 16px;
-        overflow: hidden;
-      }
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-      .hero-content p {
-        font-size: 1rem;
-      }
-      .features-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .privacy-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .steps {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .steps::before {
-        display: none;
-      }
-      .step-card, .feature-card, .privacy-card {
-        padding: 20px;
-      }
-      h2 {
-        font-size: 1.6rem;
-      }
+
+    @media (max-width: 640px) {
+      html, body { overflow-x: hidden; width: 100%; }
+      
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: block; }
+      
+      section { padding: 56px 16px; }
+      .section-inner { max-width: 100%; padding: 0 4px; }
+      
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content p { font-size: 1rem; }
+      .hero-icon { width: 100px; height: 100px; }
+      
+      .proof-inner { flex-wrap: wrap; gap: 16px; justify-content: center; }
+      .proof-item { flex: 0 0 42%; text-align: center; }
+      .proof-divider { display: none; }
+      .proof-number { font-size: 1.2rem; }
+      
+      .features-grid { grid-template-columns: 1fr; gap: 12px; }
+      .feature-card { padding: 20px; }
+      
+      .steps { grid-template-columns: 1fr; gap: 16px; }
+      .steps::before { display: none; }
+      .step-card { padding: 20px; }
+      
+      .privacy-grid { grid-template-columns: 1fr; gap: 12px; }
+      .privacy-card { padding: 20px; }
+      
+      h2 { font-size: 1.5rem; }
+      .section-sub { font-size: 0.95rem; }
+      
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
+
+    @media (min-width: 641px) {
+      .mobile-nav { display: none !important; }
+    }
+
   </style>
 </head>
 <body>
@@ -914,6 +882,22 @@
       </div>
     </div>
         <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true">🔒</span>
+          <div>
+            <div class="proof-text">100% on-device AI</div>
+            <div class="proof-sub">Apple NLEmbedding framework</div>
+          </div>
+        </div>
+        <div class="proof-item">
+          <span class="proof-icon" aria-hidden="true">🛡️</span>
+          <div>
+            <div class="proof-text">Zero data leaves your Mac</div>
+            <div class="proof-sub">Private by design, not policy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- FEATURES -->
     <section id="features" aria-labelledby="features-heading">
       <div class="section-inner">
