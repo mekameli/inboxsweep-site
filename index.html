@@ -79,16 +79,17 @@
     }
 
     /* ── NAV ── */
+    /* ══ NAVIGATION ══ */
     nav {
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 40px;
       height: 60px;
-      background: var(--nav-bg);
+      padding: 0 32px;
+      background: rgba(10,10,15,0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -98,18 +99,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 17px;
-      font-weight: 700;
-      color: var(--text);
       text-decoration: none;
-      letter-spacing: -0.3px;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 16px;
+      z-index: 201;
     }
 
-    .nav-logo img {
-      width: 30px;
-      height: 30px;
-      border-radius: 8px;
-    }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 6px; }
 
     .nav-links {
       display: flex;
@@ -129,79 +126,122 @@
     .nav-links a:hover { color: var(--text); }
 
     .nav-cta {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
-      color: #000 !important;
-      padding: 8px 18px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff !important;
+      padding: 8px 20px;
       border-radius: 8px;
-      font-weight: 600 !important;
-      font-size: 13px !important;
-      transition: opacity 0.2s, transform 0.2s !important;
+      font-weight: 600;
+      font-size: 13px;
     }
 
-    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
-
+    /* Hamburger button */
     .nav-hamburger {
       display: none;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 4px;
-      color: var(--text);
+      width: 40px;
+      height: 40px;
+      position: relative;
+      z-index: 201;
     }
 
     .nav-hamburger span {
       display: block;
-      width: 22px;
+      width: 20px;
       height: 2px;
-      background: var(--text);
-      margin: 4px 0;
-      border-radius: 2px;
-      transition: all 0.3s;
+      background: var(--text-muted);
+      position: absolute;
+      left: 10px;
+      transition: all 0.3s ease;
     }
 
+    .nav-hamburger span:nth-child(1) { top: 12px; }
+    .nav-hamburger span:nth-child(2) { top: 19px; }
+    .nav-hamburger span:nth-child(3) { top: 26px; }
+
+    .nav-hamburger.active span:nth-child(1) {
+      top: 19px; transform: rotate(45deg); background: var(--text);
+    }
+    .nav-hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-hamburger.active span:nth-child(3) {
+      top: 19px; transform: rotate(-45deg); background: var(--text);
+    }
+
+    /* Mobile nav — full screen takeover */
     .mobile-nav {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
       background: #0a0a0f;
       z-index: 150;
-      padding: 80px 32px 40px;
+      flex-direction: column;
+      padding: 100px 32px 40px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .mobile-nav-links {
+      display: flex;
       flex-direction: column;
       gap: 0;
-      overflow-y: auto;
+      flex: 1;
     }
 
-    .mobile-nav.open { display: flex; }
-
-    .mobile-nav .nav-section-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--text-dim);
-      margin-top: 20px;
-      margin-bottom: 4px;
-      padding: 0;
-      border: none;
-    }
-
-    .mobile-nav a {
-      color: var(--text-muted);
+    .mobile-nav-links a {
+      color: var(--text);
       text-decoration: none;
-      font-size: 17px;
-      font-weight: 500;
-      padding: 16px 0;
+      font-size: 22px;
+      font-weight: 600;
+      padding: 20px 0;
       border-bottom: 1px solid var(--border);
-      transition: color 0.2s;
+      transition: color 0.15s;
       display: block;
     }
 
-    .mobile-nav a:last-child { border-bottom: none; }
-    .mobile-nav a:hover { color: var(--text); }
+    .mobile-nav-links a:last-child { border-bottom: none; }
+    .mobile-nav-links a:active { color: var(--accent); }
+
+    .mobile-nav-footer {
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-nav-footer a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .mobile-nav-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff !important;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      margin-top: 12px;
+    }
+
 
     /* ── HERO ── */
     .hero {
@@ -832,19 +872,19 @@
     </button>
   </nav>
 
-  <!-- Mobile nav overlay -->
-  <div class="mobile-overlay" id="mobileOverlay"></div>
-  
-  <!-- Mobile nav panel -->
+  <!-- Mobile nav — full screen -->
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-    <div class="nav-section-label">Navigation</div>
-    <a href="#features">Features</a>
-    <a href="#privacy">Privacy</a>
-    <a href="#download">Download</a>
-    <div class="nav-section-label">Legal</div>
-    <a href="privacy.html">Privacy Policy</a>
-    <a href="terms.html">Terms of Service</a>
-    <a href="#" class="email-protect mobile-cta" data-u="support" data-d="inboxsweep.app">Contact Support</a>
+    <div class="mobile-nav-links">
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#download">Download</a>
+    </div>
+    <div class="mobile-nav-footer">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="#" class="email-protect" data-u="support" data-d="inboxsweep.app">Contact Support</a>
+      <a href="#download" class="mobile-nav-cta">Download for Mac</a>
+    </div>
   </nav>
 
   <main>
@@ -1052,11 +1092,11 @@
     // Mobile nav toggle
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
-    const mobileOverlay = document.getElementById('mobileOverlay');
+    
 
     function toggleMobileNav() {
       const isOpen = mobileNav.classList.toggle('open');
-      mobileOverlay.classList.toggle('open');
+      
       menuBtn.classList.toggle('active');
       menuBtn.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -1064,14 +1104,14 @@
 
     function closeMobileNav() {
       mobileNav.classList.remove('open');
-      mobileOverlay.classList.remove('open');
+      
       menuBtn.classList.remove('active');
       menuBtn.setAttribute('aria-expanded', false);
       document.body.style.overflow = '';
     }
 
     menuBtn.addEventListener('click', toggleMobileNav);
-    mobileOverlay.addEventListener('click', closeMobileNav);
+    
     mobileNav.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => { if (a.getAttribute('href')?.startsWith('#')) closeMobileNav(); });
     });
