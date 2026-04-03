@@ -795,7 +795,7 @@
     }
 
     @media (min-width: 641px) {
-      .mobile-nav { display: none !important; }
+      
     }
 
   </style>
@@ -818,13 +818,19 @@
     </button>
   </nav>
 
-  <!-- Mobile nav -->
+  <!-- Mobile nav overlay -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  
+  <!-- Mobile nav panel -->
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-    <a href="#features" onclick="closeMobileNav()">Features</a>
-    <a href="#privacy" onclick="closeMobileNav()">Privacy</a>
-    <a href="#download" onclick="closeMobileNav()">Download for Mac</a>
-    <a href="privacy.html" onclick="closeMobileNav()">Privacy Policy</a>
-    <a href="terms.html" onclick="closeMobileNav()">Terms</a>
+    <div class="nav-section-label">Navigation</div>
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#download">Download</a>
+    <div class="nav-section-label">Legal</div>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+    <a href="#" class="email-protect mobile-cta" data-u="support" data-d="inboxsweep.app">Contact Support</a>
   </nav>
 
   <main>
@@ -1032,15 +1038,33 @@
     // Mobile nav toggle
     const menuBtn = document.getElementById('menuBtn');
     const mobileNav = document.getElementById('mobileNav');
+    const mobileOverlay = document.getElementById('mobileOverlay');
 
-    menuBtn.addEventListener('click', () => {
+    function toggleMobileNav() {
       const isOpen = mobileNav.classList.toggle('open');
+      mobileOverlay.classList.toggle('open');
+      menuBtn.classList.toggle('active');
       menuBtn.setAttribute('aria-expanded', isOpen);
-    });
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
 
     function closeMobileNav() {
       mobileNav.classList.remove('open');
+      mobileOverlay.classList.remove('open');
+      menuBtn.classList.remove('active');
       menuBtn.setAttribute('aria-expanded', false);
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', toggleMobileNav);
+    mobileOverlay.addEventListener('click', closeMobileNav);
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => { if (a.getAttribute('href')?.startsWith('#')) closeMobileNav(); });
+    });
+    });
+
+    function closeMobileNav() {
+
     }
 
     // Scroll reveal (CSS-driven, minimal JS)
