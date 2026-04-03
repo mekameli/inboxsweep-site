@@ -171,77 +171,7 @@
     }
 
     /* Mobile nav — full screen takeover */
-    .mobile-nav {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
-      background: #0a0a0f;
-      z-index: 150;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding: 80px 28px 32px;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
 
-    .mobile-nav.open {
-      display: flex;
-      opacity: 1;
-    }
-
-    .mobile-nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .mobile-nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 600;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-      transition: color 0.15s;
-      display: block;
-    }
-
-    .mobile-nav-links a:last-child { border-bottom: none; }
-    .mobile-nav-links a:active { color: var(--accent); }
-
-    .mobile-nav-footer {
-      margin-top: 32px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .mobile-nav-footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 15px;
-    }
-
-    .mobile-nav-cta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 16px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff !important;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 16px;
-      text-decoration: none;
-      margin-top: 8px;
-    }
 
 
     /* ── HERO ── */
@@ -766,6 +696,79 @@
       transform: translateY(0);
     }
 
+
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #0a0a0f;
+      z-index: 150;
+      padding: 0;
+    }
+    .mobile-nav.open { display: block; }
+
+    .mobile-nav-inner {
+      padding: 88px 32px 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      padding: 16px 0;
+      display: block;
+    }
+
+    .mobile-nav-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 16px 0;
+    }
+
+    .mobile-nav-secondary {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mobile-nav-secondary a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      display: block;
+    }
+
+    .mobile-nav-bottom {
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    .mobile-nav-bottom a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, #00d4ff, #00e88f);
+      color: #000 !important;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+    }
+
     /* ── RESPONSIVE ── */
     
       .steps { grid-template-columns: 1fr; }
@@ -808,6 +811,79 @@
       background: var(--border);
     }
   
+
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #0a0a0f;
+      z-index: 150;
+      padding: 0;
+    }
+    .mobile-nav.open { display: block; }
+
+    .mobile-nav-inner {
+      padding: 88px 32px 40px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      padding: 16px 0;
+      display: block;
+    }
+
+    .mobile-nav-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 16px 0;
+    }
+
+    .mobile-nav-secondary {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .mobile-nav-secondary a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      display: block;
+    }
+
+    .mobile-nav-bottom {
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    .mobile-nav-bottom a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, #00d4ff, #00e88f);
+      color: #000 !important;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 17px;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .features-grid { grid-template-columns: repeat(2, 1fr); }
@@ -873,18 +949,23 @@
     </button>
   </nav>
 
-  <!-- Mobile nav — full screen -->
+  <!-- Mobile nav -->
   <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
-    <div class="mobile-nav-links">
-      <a href="#features">Features</a>
-      <a href="#privacy">Privacy</a>
-      <a href="#download">Download</a>
-    </div>
-    <div class="mobile-nav-footer">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="terms.html">Terms of Service</a>
-      <a href="#" class="email-protect" data-u="support" data-d="inboxsweep.app">Contact Support</a>
-      <a href="#download" class="mobile-nav-cta">Download for Mac</a>
+    <div class="mobile-nav-inner">
+      <div class="mobile-nav-links">
+        <a href="#features">Features</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#download">Download</a>
+      </div>
+      <div class="mobile-nav-divider"></div>
+      <div class="mobile-nav-secondary">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="#" class="email-protect" data-u="support" data-d="inboxsweep.app">Contact Support</a>
+      </div>
+      <div class="mobile-nav-bottom">
+        <a href="#download">Download for Mac</a>
+      </div>
     </div>
   </nav>
 
@@ -1113,7 +1194,7 @@
 
     menuBtn.addEventListener('click', toggleMobileNav);
     
-    mobileNav.querySelectorAll('a').forEach(a => {
+    document.querySelectorAll('.mobile-nav a').forEach(a => {
       a.addEventListener('click', () => { if (a.getAttribute('href')?.startsWith('#')) closeMobileNav(); });
     });
 
