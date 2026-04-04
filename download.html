@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download InboxSweep — AI Email Cleanup for Mac</title>
+  <meta name="description" content="Download InboxSweep for macOS. AI-powered email cleanup that runs 100% on your Mac. Free." />
+  <link rel="icon" href="favicon.png?v=3" type="image/png" />
+  <link rel="canonical" href="https://inboxsweep.app/download" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f;
+      --bg-card: #13131a;
+      --border: rgba(255,255,255,0.08);
+      --accent: #5b8dee;
+      --accent-2: #a78bfa;
+      --text: #f0f0f5;
+      --text-muted: #8888a0;
+      --text-dim: #555568;
+      --radius: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; padding: 0 32px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--text); font-weight: 700; font-size: 16px;
+    }
+    .nav-logo img { width: 28px; height: 28px; border-radius: 6px; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* Main */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      flex: 1;
+      width: 100%;
+    }
+
+    .download-hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .download-hero img {
+      width: 120px; height: 120px; border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 60px rgba(0,212,255,0.2), 0 16px 40px rgba(0,0,0,0.4);
+      margin-bottom: 24px;
+    }
+    .download-hero h1 {
+      font-size: 36px; font-weight: 800; letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+    .download-hero p {
+      font-size: 18px; color: var(--text-muted); margin-bottom: 32px;
+    }
+
+    /* Download button */
+    .download-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #00d4ff, #00e88f);
+      color: #000; font-weight: 700; font-size: 17px;
+      border-radius: 14px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 0 30px rgba(0,212,255,0.3);
+    }
+    .download-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .download-btn svg { width: 20px; height: 20px; }
+
+    .download-meta {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .download-meta span { margin: 0 8px; }
+
+    /* Requirements */
+    .requirements {
+      margin-top: 48px;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .requirements h2 {
+      font-size: 16px; font-weight: 700; margin-bottom: 12px;
+    }
+    .requirements ul {
+      list-style: none; display: flex; flex-direction: column; gap: 8px;
+    }
+    .requirements li {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: var(--text-muted);
+    }
+    .requirements li svg { width: 16px; height: 16px; color: #00d4ff; flex-shrink: 0; }
+
+    /* Release history */
+    .releases {
+      margin-top: 48px;
+    }
+    .releases h2 {
+      font-size: 20px; font-weight: 700; margin-bottom: 20px;
+    }
+    .release-card {
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+    }
+    .release-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .release-version {
+      font-size: 16px; font-weight: 700;
+    }
+    .release-badge {
+      font-size: 11px; font-weight: 600; padding: 3px 10px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .badge-latest { background: rgba(0,212,255,0.15); color: #00d4ff; }
+    .badge-beta { background: rgba(167,139,250,0.15); color: #a78bfa; }
+    .release-date { font-size: 13px; color: var(--text-dim); margin-bottom: 8px; }
+    .release-notes { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .release-notes ul { padding-left: 20px; list-style: disc; }
+    .release-notes li { margin-bottom: 4px; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 32px;
+      text-align: center;
+      font-size: 13px; color: var(--text-dim);
+    }
+    footer a { color: var(--text-muted); text-decoration: none; margin: 0 12px; }
+
+    @media (max-width: 640px) {
+      main { padding: 100px 16px 60px; }
+      .download-hero h1 { font-size: 28px; }
+      .download-hero p { font-size: 16px; }
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="icon.png?v=3" alt="InboxSweep" width="28" height="28" />
+      InboxSweep
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#privacy">Privacy</a></li>
+      <li><a href="/download">Download</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="download-hero">
+      <img src="icon.png?v=3" alt="InboxSweep app icon" />
+      <h1>Download InboxSweep</h1>
+      <p>AI-powered email cleanup for Mac. Free.</p>
+
+      <a href="#" class="download-btn" id="downloadBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download for Mac
+      </a>
+
+      <div class="download-meta">
+        Version 1.0.0 <span>·</span> macOS 14+ (Sonoma) <span>·</span> Apple Silicon & Intel <span>·</span> Free
+      </div>
+    </div>
+
+    <div class="requirements">
+      <h2>System Requirements</h2>
+      <ul>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          macOS 14.0 (Sonoma) or later
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Apple Silicon (M1+) or Intel Mac
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Gmail account (Google OAuth)
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Internet connection for Gmail sync (AI runs offline)
+        </li>
+      </ul>
+    </div>
+
+    <div class="releases">
+      <h2>Release History</h2>
+
+      <div class="release-card">
+        <div class="release-header">
+          <span class="release-version">v1.0.0</span>
+          <span class="release-badge badge-latest">Coming Soon</span>
+        </div>
+        <div class="release-date">Expected April 2026</div>
+        <div class="release-notes">
+          <ul>
+            <li>AI-powered email classification into 10 smart categories</li>
+            <li>On-device processing — emails never leave your Mac</li>
+            <li>Bulk cleanup by category or sender</li>
+            <li>Local archive with semantic search</li>
+            <li>Export to external drive (EML + MBOX)</li>
+            <li>Smart Digest, Needs Attention, and more insights</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Future releases will be added here -->
+      <!--
+      <div class="release-card">
+        <div class="release-header">
+          <span class="release-version">v1.1.0</span>
+          <span class="release-badge badge-beta">Beta</span>
+        </div>
+        <div class="release-date">May 2026</div>
+        <div class="release-notes">
+          <ul>
+            <li>Snooze emails</li>
+            <li>Follow-up tracking</li>
+            <li>Auto-cleanup rules</li>
+          </ul>
+        </div>
+      </div>
+      -->
+    </div>
+  </main>
+
+  <footer>
+    <a href="/">Home</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="#" class="email-protect" data-u="support" data-d="inboxsweep.app">Support</a>
+    <br/><br/>
+    &copy; 2026 InboxSweep. All rights reserved.
+  </footer>
+
+  <script src="email-protect.js"></script>
+</body>
+</html>
